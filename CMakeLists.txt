@@ -3,6 +3,12 @@ project (CMT)
 cmake_minimum_required (VERSION 2.6)
 
 option(BUILD_TRAX_CLIENT "Build the trax client." OFF)
+set(BUILD_WITH_STATIC_CRT "Manual flags" CACHE STRING "Use statically linked CRT")
+set_property(CACHE BUILD_WITH_STATIC_CRT PROPERTY STRINGS "Manual flags" "Yes" "No")
+
+if(MSVC)
+  include(cmake/msvc_crt.cmake)
+endif(MSVC)
 
 find_package(OpenCV REQUIRED)
 
